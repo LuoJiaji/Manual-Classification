@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import tkinter as tk
 
 dataset_path = './data/'
-dataset_path_yes = './new_data1/'
+dataset_path_yes = './类/'
 dataset_path_no = './new_data2/'
 
 filelist = os.listdir(dataset_path)
@@ -18,9 +18,11 @@ i = 0
 l = len(filelist)
 
 plt.ion()
-img = Image.open(dataset_path + filelist[i])
+fp = open(dataset_path + filelist[i],'rb') 
+img = Image.open(fp)
 plt.imshow(img)
 plt.show()
+fp.close()
 
 print('THe number of files:', l)
 print(i, ';', filelist[i])
@@ -33,9 +35,12 @@ def yes():
     plt.close()
     if i < l:
         print(i, ';', filelist[i])
-        img = Image.open(dataset_path + filelist[i])
+        fp = open(dataset_path + filelist[i],'rb') 
+        img = Image.open(fp)
         plt.imshow(img)
         plt.show()
+        fp.close()
+
     elif i == l:
         quit()
 
@@ -47,12 +52,16 @@ def no():
     plt.close()
     if i < l:
         print(i, ';', filelist[i])
-        img = Image.open(dataset_path + filelist[i])
+        # img = Image.open(dataset_path + filelist[i])
+        fp = open(dataset_path + filelist[i],'rb') 
+        img = Image.open(fp)
+        # fp.close()
         plt.imshow(img)
         plt.show()
+        fp.close()
+
     elif i == l:
         quit()
-
 
 b1 = tk.Button(window, text='Yes', width=15, height=2, command=yes)
 b1.pack()
